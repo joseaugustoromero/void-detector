@@ -18,8 +18,11 @@ out_dir = (osp.abspath(args.out_dir) if args.out_dir else
 values = [in_dir, out_dir, args.gpu]
 if args.test_code:
     values.append("--test-code")
+else:
+    values.append("")
 
 if args.dockerless:
+    print('values: ', values)
     download_model()
     cmd = "ipython -- utils/checkpoint2drawings.py"
     cmd += " --input {} --output {} --gpu {} {}".format(*values)
